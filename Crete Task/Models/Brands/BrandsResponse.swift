@@ -9,7 +9,7 @@ struct BrandsResponse: Codable {
     let data: [Brand]?
 }
 
-struct Brand: Codable {
+struct Brand: Codable,Hashable {
     let id: Int?
     let name: String?
     let image: String?

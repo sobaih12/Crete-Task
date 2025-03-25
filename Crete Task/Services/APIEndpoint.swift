@@ -8,6 +8,7 @@
 
 enum APIEndpoint: String {
     case brands = "brands"
+    case models = "models"
 
     
     
