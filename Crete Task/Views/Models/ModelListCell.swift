@@ -31,19 +31,19 @@ struct ModelListCell: View {
             HStack {
                 VStack(alignment: .leading){
                     Text(model.name ?? "unknown")
-                        .font(.system(size: 18, weight: .semibold))
+                        .font(.custom("Poppins-SemiBold", size: 18))
                         .foregroundColor(.black)
                     Text(model.attributeValue ?? "2020")
-                        .font(.system(size: 14, weight: .medium))
+                        .font(.custom("Poppins-Medium", size: 14))
                         .foregroundColor(Color(hex: "#969696"))
                 }
                 Spacer()
                 VStack(alignment: .leading){
                     Text("Starting from")
-                        .font(.system(size: 10, weight: .light))
+                        .font(.custom("Poppins-Light", size: 10))
                         .foregroundColor(Color(hex: "#969696"))
                     Text("\(model.price ?? 0)")
-                        .font(.system(size: 18, weight: .semibold))
+                        .font(.custom("Poppins-SemiBold", size: 18))
                         .foregroundColor(Color(hex: "#EB8855"))
                 }
                 

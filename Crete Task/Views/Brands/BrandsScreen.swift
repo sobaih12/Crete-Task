@@ -36,7 +36,7 @@ struct BrandsScreen: View {
                 
                 VStack {
                     Text("New Cars")
-                        .font(.system(size: 22, weight: .medium))
+                        .font(.custom("Poppins-Medium", size: 22))
                         .foregroundColor(.black)
                         .padding(.top, 22)
                     
@@ -47,6 +47,8 @@ struct BrandsScreen: View {
                             
                             TextField("Search Brands", text: $viewModel.searchText)
                                 .foregroundColor(.black)
+                                .font(.custom("Poppins-Regular", size: 16))
+
                         }
                         .padding(.horizontal, 10)
                         .frame(height: 40)

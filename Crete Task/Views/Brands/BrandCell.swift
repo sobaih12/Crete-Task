@@ -22,7 +22,7 @@ struct BrandCell: View {
             .frame(width: 40, height: 30)
 
             Text(brand.name ?? "Unknown")
-                .font(.system(size: 12))
+                .font(.custom("Poppins-Regular", size: 12))
                 .foregroundColor(.black)
                 .multilineTextAlignment(.center)
                 .lineLimit(1)

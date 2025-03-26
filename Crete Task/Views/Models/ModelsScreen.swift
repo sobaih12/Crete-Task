@@ -48,7 +48,7 @@ struct ModelsScreen: View {
                         }
                     Spacer()
                     Text("\(brand.name ?? "Unknown")")
-                        .font(.system(size: 22, weight: .medium))
+                        .font(.custom("Poppins-Medium", size: 22))
                     Spacer()
                 }
                 .padding(.horizontal, 20)
@@ -141,11 +141,13 @@ struct ModelsScreen: View {
         }
         .onAppear {
             Task {
-                await viewModel.fetchModels(page: currentPage, brandId: brand.id ?? 0, reset: true)
+                if viewModel.models.isEmpty {
+                    await viewModel.fetchModels(page: currentPage, brandId: brand.id ?? 0, reset: true)
+                }
             }
         }
         .navigationDestination(item: $selectedModel) { model in
-            GenerationsScreen(model: model)
+            GenerationsScreen(model: model,brand: brand)
         }
         .navigationBarBackButtonHidden(true)
     }

@@ -33,7 +33,9 @@ class ModelsViewModel: ObservableObject {
         let result: Result<ModelsResponse, Error> = await apiService.sendRequest(
             endpoint: .models,
             method: .GET,
-            queryParams: ["category": "3", "brand": "\(brandId)", "page": "\(page)"]
+            queryParams: ["category": "3",
+                          "brand": "\(brandId)",
+                          "page": "\(page)"]
         )
         
         DispatchQueue.main.async {

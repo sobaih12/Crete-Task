@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct GenerationsScreen: View {
+    
+    @StateObject private var viewModel = GenerationsViewModel()
+    @State private var compareCount = 0
+
     let model: Model
+    let brand: Brand
     @Environment(\.dismiss) private var dismiss
 
 
@@ -36,14 +41,38 @@ struct GenerationsScreen: View {
                                 dismiss()
                             }
                         Spacer()
-                        Text("\(model.parentBrand ?? "Unknown")")
-                            .font(.system(size: 22, weight: .medium))
+                        Text("\(brand.name ?? "Unknown")")
+                            .font(.custom("Poppins-Medium", size: 22))
                         Spacer()
                     }
                     .padding(.horizontal, 20)
                     .padding(.top, 22)
+                    
+                    ScrollView {
+                        VStack(spacing: 14) {
+                            ForEach(viewModel.cars, id: \.self) { car in
+                                // there is no parameter retreived called model
+                                if car.model == model.name {
+                                    GenerationCell(car: car, compareCount: $compareCount)
+                                }
+                            }
+                        }
+                        .padding()
+                    }
+
                     Spacer()
+                                       
                 }
+                if compareCount > 0 {
+                    FloatingCompareView(compareCount: compareCount)
+                }
+                
+                if viewModel.isLoading {
+                    ProgressView()
+                }
+            }
+            .task {
+                await viewModel.fetchGenerations(brandId: brand.id ?? 0, identificationAttributeId: model.identificationAttributeID ?? 0, identificationAttributeValueId: model.identificationAttributeValueID ?? 0)
             }
         }
         .navigationBarBackButtonHidden(true)
